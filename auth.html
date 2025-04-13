@@ -4,38 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account - PEAK</title>
-    <meta name="description" content="Create an account or sign in to contribute to the PEAK community">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .auth-container {
             max-width: 500px;
-            margin: 3rem auto;
+            margin: 0 auto;
             padding: 2rem;
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
         .auth-tabs {
             display: flex;
             margin-bottom: 2rem;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #ddd;
         }
         
         .auth-tab {
-            flex: 1;
-            text-align: center;
-            padding: 1rem;
+            padding: 1rem 1.5rem;
             cursor: pointer;
             font-weight: 600;
             color: #555;
+            border-bottom: 3px solid transparent;
             transition: all 0.3s ease;
         }
         
         .auth-tab.active {
             color: #0066cc;
-            border-bottom: 3px solid #0066cc;
+            border-bottom-color: #0066cc;
         }
         
         .auth-form {
@@ -54,6 +52,7 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
+            color: #333;
         }
         
         .form-group input {
@@ -64,10 +63,11 @@
             font-size: 1rem;
         }
         
-        .form-group input:focus {
-            border-color: #0066cc;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        .form-error {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
         }
         
         .btn-primary {
@@ -78,96 +78,50 @@
             border-radius: 4px;
             font-weight: 600;
             cursor: pointer;
-            width: 100%;
             transition: background-color 0.3s ease;
+            width: 100%;
         }
         
         .btn-primary:hover {
             background-color: #0052a3;
         }
         
-        .auth-footer {
-            text-align: center;
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            color: #777;
-        }
-        
-        .auth-footer a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        
-        .auth-footer a:hover {
-            text-decoration: underline;
-        }
-        
         .auth-message {
+            text-align: center;
+            margin-top: 2rem;
             padding: 1rem;
-            margin-bottom: 1.5rem;
             border-radius: 4px;
             display: none;
         }
         
-        .auth-message.error {
-            background-color: #ffebee;
-            color: #c62828;
-            border: 1px solid #ffcdd2;
+        .auth-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
         }
         
-        .auth-message.success {
-            background-color: #e8f5e9;
-            color: #2e7d32;
-            border: 1px solid #c8e6c9;
+        .auth-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
         }
         
         .user-profile {
-            display: none;
             text-align: center;
+            padding: 2rem;
         }
         
         .user-avatar {
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background-color: #e0e0e0;
+            background-color: #0066cc;
+            color: white;
+            font-size: 2.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
-            font-size: 2.5rem;
-            color: #0066cc;
-        }
-        
-        .user-info h3 {
-            margin-top: 0;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-        
-        .user-info p {
-            margin-top: 0;
-            color: #777;
-            margin-bottom: 1.5rem;
-        }
-        
-        .user-actions {
-            margin-top: 2rem;
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            color: #0066cc;
-            border: 1px solid #0066cc;
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-outline:hover {
-            background-color: #f0f7ff;
         }
     </style>
 </head>
@@ -191,7 +145,10 @@
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="about.html">About Us</a></li>
-                    <li><a href="auth.html" class="active">Account</a></li>
+                    <li><a href="auth.html" class="active" id="auth-link">Account</a></li>
+                    <li class="auth-state logged-in" style="display: none;">
+                        <a href="#" class="logout-btn">Logout</a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -201,82 +158,66 @@
         <section class="page-header">
             <div class="container">
                 <h1>Account</h1>
-                <p>Create an account or sign in to contribute to the PEAK community</p>
+                <p>Sign in or create an account to ask questions and contribute to the community</p>
             </div>
         </section>
 
         <section class="auth-section">
             <div class="container">
-                <div class="auth-container">
-                    <div id="auth-message" class="auth-message"></div>
-                    
-                    <!-- User is logged in view -->
-                    <div id="user-profile" class="user-profile">
-                        <div class="user-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="user-info">
-                            <h3 id="user-name">User Name</h3>
-                            <p id="user-email">user@example.com</p>
-                        </div>
-                        <div class="user-actions">
-                            <a href="faq.html" class="btn btn-primary">Go to FAQ</a>
-                            <button id="logout-btn" class="btn btn-outline">Sign Out</button>
-                        </div>
+                <!-- Logged out view -->
+                <div id="auth-forms" class="auth-container">
+                    <div class="auth-tabs">
+                        <div class="auth-tab active" data-tab="login">Login</div>
+                        <div class="auth-tab" data-tab="register">Register</div>
                     </div>
                     
-                    <!-- Authentication forms -->
-                    <div id="auth-forms">
-                        <div class="auth-tabs">
-                            <div class="auth-tab active" data-tab="login">Sign In</div>
-                            <div class="auth-tab" data-tab="register">Create Account</div>
+                    <!-- Login form -->
+                    <form id="login-form" class="auth-form active">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" required>
                         </div>
-                        
-                        <form id="login-form" class="auth-form active">
-                            <div class="form-group">
-                                <label for="login-email">Email Address</label>
-                                <input type="email" id="login-email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="login-password">Password</label>
-                                <input type="password" id="login-password" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Sign In</button>
-                            <div class="auth-footer">
-                                <p>Forgot your password? <a href="#" id="reset-password-link">Reset it here</a></p>
-                            </div>
-                        </form>
-                        
-                        <form id="register-form" class="auth-form">
-                            <div class="form-group">
-                                <label for="register-name">Full Name</label>
-                                <input type="text" id="register-name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="register-email">Email Address</label>
-                                <input type="email" id="register-email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="register-password">Password</label>
-                                <input type="password" id="register-password" required minlength="6">
-                            </div>
-                            <div class="form-group">
-                                <label for="register-confirm-password">Confirm Password</label>
-                                <input type="password" id="register-confirm-password" required minlength="6">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Create Account</button>
-                        </form>
-                        
-                        <form id="reset-form" class="auth-form">
-                            <div class="form-group">
-                                <label for="reset-email">Email Address</label>
-                                <input type="email" id="reset-email" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Send Reset Link</button>
-                            <div class="auth-footer">
-                                <p>Remember your password? <a href="#" id="back-to-login-link">Back to Sign In</a></p>
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" required>
+                            <div id="login-error" class="form-error"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                    
+                    <!-- Register form -->
+                    <form id="register-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="register-name">Full Name</label>
+                            <input type="text" id="register-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <input type="password" id="register-password" required minlength="6">
+                            <small>Password must be at least 6 characters</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-confirm">Confirm Password</label>
+                            <input type="password" id="register-confirm" required>
+                            <div id="register-error" class="form-error"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                    
+                    <div id="auth-message" class="auth-message"></div>
+                </div>
+                
+                <!-- Logged in view -->
+                <div id="user-profile" class="auth-container" style="display: none;">
+                    <div class="user-avatar" id="user-avatar"></div>
+                    <h2 id="user-name" class="user-profile-name">User Name</h2>
+                    <p id="user-email">user@example.com</p>
+                    <div class="user-actions">
+                        <button id="logout-btn" class="btn btn-primary logout-btn">Logout</button>
                     </div>
                 </div>
             </div>
@@ -313,45 +254,43 @@
         </div>
     </footer>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-    
+    <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
     <script>
-        // Your Firebase configuration
-        const firebaseConfig = {
-            // Replace with your Firebase config
-            apiKey: "YOUR_API_KEY",
-            authDomain: "your-project-id.firebaseapp.com",
-            projectId: "your-project-id",
-            storageBucket: "your-project-id.appspot.com",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-        
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        
-        // Auth references
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        
         document.addEventListener('DOMContentLoaded', function() {
             // DOM elements
-            const authTabs = document.querySelectorAll('.auth-tab');
-            const authForms = document.querySelectorAll('.auth-form');
+            const authForms = document.getElementById('auth-forms');
+            const userProfile = document.getElementById('user-profile');
             const loginForm = document.getElementById('login-form');
             const registerForm = document.getElementById('register-form');
-            const resetForm = document.getElementById('reset-form');
-            const resetPasswordLink = document.getElementById('reset-password-link');
-            const backToLoginLink = document.getElementById('back-to-login-link');
-            const logoutBtn = document.getElementById('logout-btn');
+            const loginError = document.getElementById('login-error');
+            const registerError = document.getElementById('register-error');
             const authMessage = document.getElementById('auth-message');
-            const userProfile = document.getElementById('user-profile');
-            const authForms = document.getElementById('auth-forms');
             const userName = document.getElementById('user-name');
             const userEmail = document.getElementById('user-email');
+            const userAvatar = document.getElementById('user-avatar');
+            const authTabs = document.querySelectorAll('.auth-tab');
+            const authFormElements = document.querySelectorAll('.auth-form');
+            
+            // Check if user is logged in
+            function checkAuth() {
+                const currentUser = JSON.parse(localStorage.getItem('peak_current_user'));
+                
+                if (currentUser) {
+                    // User is logged in
+                    authForms.style.display = 'none';
+                    userProfile.style.display = 'block';
+                    
+                    // Update profile info
+                    userName.textContent = currentUser.name;
+                    userEmail.textContent = currentUser.email;
+                    userAvatar.textContent = getInitials(currentUser.name);
+                } else {
+                    // User is logged out
+                    authForms.style.display = 'block';
+                    userProfile.style.display = 'none';
+                }
+            }
             
             // Tab switching
             authTabs.forEach(tab => {
@@ -363,148 +302,135 @@
                     tab.classList.add('active');
                     
                     // Show corresponding form
-                    authForms.forEach(form => {
+                    authFormElements.forEach(form => {
                         form.classList.remove('active');
                         if (form.id === `${tabId}-form`) {
                             form.classList.add('active');
                         }
                     });
                     
-                    // Clear any messages
+                    // Clear error messages
+                    loginError.style.display = 'none';
+                    registerError.style.display = 'none';
                     authMessage.style.display = 'none';
                 });
-            });
-            
-            // Reset password link
-            resetPasswordLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                authForms.forEach(form => form.classList.remove('active'));
-                resetForm.classList.add('active');
-            });
-            
-            // Back to login link
-            backToLoginLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                authForms.forEach(form => form.classList.remove('active'));
-                loginForm.classList.add('active');
             });
             
             // Login form submission
             loginForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 
-                const email = document.getElementById('login-email').value;
+                const email = document.getElementById('login-email').value.trim();
                 const password = document.getElementById('login-password').value;
                 
-                auth.signInWithEmailAndPassword(email, password)
-                    .then((userCredential) => {
-                        // Signed in
-                        showMessage('You have successfully signed in!', 'success');
-                        loginForm.reset();
-                    })
-                    .catch((error) => {
-                        showMessage(`Error: ${error.message}`, 'error');
-                    });
+                // Get users from localStorage
+                const users = JSON.parse(localStorage.getItem('peak_users')) || [];
+                
+                // Find user with matching email
+                const user = users.find(u => u.email === email);
+                
+                if (user && user.password === password) {
+                    // Successful login
+                    const currentUser = {
+                        id: user.id,
+                        name: user.name,
+                        email: user.email
+                    };
+                    
+                    // Store current user in localStorage
+                    localStorage.setItem('peak_current_user', JSON.stringify(currentUser));
+                    
+                    // Show success message
+                    showMessage('Login successful! Redirecting...', 'success');
+                    
+                    // Redirect to home page after a delay
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                } else {
+                    // Failed login
+                    loginError.textContent = 'Invalid email or password';
+                    loginError.style.display = 'block';
+                }
             });
             
             // Register form submission
             registerForm.addEventListener('submit', (e) => {
                 e.preventDefault();
                 
-                const name = document.getElementById('register-name').value;
-                const email = document.getElementById('register-email').value;
+                const name = document.getElementById('register-name').value.trim();
+                const email = document.getElementById('register-email').value.trim();
                 const password = document.getElementById('register-password').value;
-                const confirmPassword = document.getElementById('register-confirm-password').value;
+                const confirmPassword = document.getElementById('register-confirm').value;
                 
+                // Validate passwords match
                 if (password !== confirmPassword) {
-                    showMessage('Passwords do not match!', 'error');
+                    registerError.textContent = 'Passwords do not match';
+                    registerError.style.display = 'block';
                     return;
                 }
                 
-                auth.createUserWithEmailAndPassword(email, password)
-                    .then((userCredential) => {
-                        // Signed up
-                        const user = userCredential.user;
-                        
-                        // Add user to Firestore
-                        return db.collection('users').doc(user.uid).set({
-                            name: name,
-                            email: email,
-                            createdAt: new Date()
-                        });
-                    })
-                    .then(() => {
-                        showMessage('Your account has been created successfully!', 'success');
-                        registerForm.reset();
-                    })
-                    .catch((error) => {
-                        showMessage(`Error: ${error.message}`, 'error');
-                    });
-            });
-            
-            // Reset password form submission
-            resetForm.addEventListener('submit', (e) => {
-                e.preventDefault();
+                // Get existing users
+                const users = JSON.parse(localStorage.getItem('peak_users')) || [];
                 
-                const email = document.getElementById('reset-email').value;
-                
-                auth.sendPasswordResetEmail(email)
-                    .then(() => {
-                        showMessage('Password reset email sent! Check your inbox.', 'success');
-                        resetForm.reset();
-                    })
-                    .catch((error) => {
-                        showMessage(`Error: ${error.message}`, 'error');
-                    });
-            });
-            
-            // Logout button
-            logoutBtn.addEventListener('click', () => {
-                auth.signOut()
-                    .then(() => {
-                        showMessage('You have been signed out.', 'success');
-                    })
-                    .catch((error) => {
-                        showMessage(`Error: ${error.message}`, 'error');
-                    });
-            });
-            
-            // Auth state change listener
-            auth.onAuthStateChanged((user) => {
-                if (user) {
-                    // User is signed in
-                    db.collection('users').doc(user.uid).get()
-                        .then((doc) => {
-                            if (doc.exists) {
-                                const userData = doc.data();
-                                userName.textContent = userData.name;
-                                userEmail.textContent = userData.email;
-                            }
-                        });
-                    
-                    userProfile.style.display = 'block';
-                    authForms.style.display = 'none';
-                } else {
-                    // User is signed out
-                    userProfile.style.display = 'none';
-                    authForms.style.display = 'block';
+                // Check if email already exists
+                if (users.some(user => user.email === email)) {
+                    registerError.textContent = 'Email already in use';
+                    registerError.style.display = 'block';
+                    return;
                 }
+                
+                // Create new user
+                const newUser = {
+                    id: Date.now().toString(),
+                    name: name,
+                    email: email,
+                    password: password,
+                    createdAt: new Date().toISOString()
+                };
+                
+                // Add to users array
+                users.push(newUser);
+                
+                // Save to localStorage
+                localStorage.setItem('peak_users', JSON.stringify(users));
+                
+                // Set as current user (auto login)
+                const currentUser = {
+                    id: newUser.id,
+                    name: newUser.name,
+                    email: newUser.email
+                };
+                
+                localStorage.setItem('peak_current_user', JSON.stringify(currentUser));
+                
+                // Show success message
+                showMessage('Account created successfully! Redirecting...', 'success');
+                
+                // Redirect to home page after a delay
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
             });
             
             // Helper function to show messages
             function showMessage(message, type) {
                 authMessage.textContent = message;
-                authMessage.className = 'auth-message';
-                authMessage.classList.add(type);
+                authMessage.className = `auth-message ${type}`;
                 authMessage.style.display = 'block';
-                
-                // Auto hide success messages after 5 seconds
-                if (type === 'success') {
-                    setTimeout(() => {
-                        authMessage.style.display = 'none';
-                    }, 5000);
-                }
             }
+            
+            // Helper function to get initials from name
+            function getInitials(name) {
+                return name
+                    .split(' ')
+                    .map(part => part.charAt(0))
+                    .join('')
+                    .toUpperCase();
+            }
+            
+            // Check authentication status on page load
+            checkAuth();
         });
     </script>
 </body>

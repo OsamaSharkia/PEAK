@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - PEAK</title>
+    <meta name="description" content="Create an account or sign in to contribute to the PEAK community">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .auth-container {
+            max-width: 500px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-tab.active {
+            color: #0066cc;
+            border-bottom: 3px solid #0066cc;
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group input:focus {
+            border-color: #0066cc;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+        
+        .btn-primary {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0052a3;
+        }
+        
+        .auth-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .auth-footer a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .auth-message {
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .auth-message.error {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+        }
+        
+        .auth-message.success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+        }
+        
+        .user-profile {
+            display: none;
+            text-align: center;
+        }
+        
+        .user-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: #0066cc;
+        }
+        
+        .user-info h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .user-info p {
+            margin-top: 0;
+            color: #777;
+            margin-bottom: 1.5rem;
+        }
+        
+        .user-actions {
+            margin-top: 2rem;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: #0066cc;
+            border: 1px solid #0066cc;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-outline:hover {
+            background-color: #f0f7ff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>PEAK</h1>
+                <p class="tagline">Pathway to Education Access in Kent</p>
+            </div>
+            <nav id="navbar">
+                <button id="menu-toggle" aria-label="Toggle menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <ul id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="pathways.html">Education Pathways</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="auth.html" class="active">Account</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Account</h1>
+                <p>Create an account or sign in to contribute to the PEAK community</p>
+            </div>
+        </section>
+
+        <section class="auth-section">
+            <div class="container">
+                <div class="auth-container">
+                    <div id="auth-message" class="auth-message"></div>
+                    
+                    <!-- User is logged in view -->
+                    <div id="user-profile" class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="user-info">
+                            <h3 id="user-name">User Name</h3>
+                            <p id="user-email">user@example.com</p>
+                        </div>
+                        <div class="user-actions">
+                            <a href="faq.html" class="btn btn-primary">Go to FAQ</a>
+                            <button id="logout-btn" class="btn btn-outline">Sign Out</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Authentication forms -->
+                    <div id="auth-forms">
+                        <div class="auth-tabs">
+                            <div class="auth-tab active" data-tab="login">Sign In</div>
+                            <div class="auth-tab" data-tab="register">Create Account</div>
+                        </div>
+                        
+                        <form id="login-form" class="auth-form active">
+                            <div class="form-group">
+                                <label for="login-email">Email Address</label>
+                                <input type="email" id="login-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="login-password">Password</label>
+                                <input type="password" id="login-password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Sign In</button>
+                            <div class="auth-footer">
+                                <p>Forgot your password? <a href="#" id="reset-password-link">Reset it here</a></p>
+                            </div>
+                        </form>
+                        
+                        <form id="register-form" class="auth-form">
+                            <div class="form-group">
+                                <label for="register-name">Full Name</label>
+                                <input type="text" id="register-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="register-email">Email Address</label>
+                                <input type="email" id="register-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="register-password">Password</label>
+                                <input type="password" id="register-password" required minlength="6">
+                            </div>
+                            <div class="form-group">
+                                <label for="register-confirm-password">Confirm Password</label>
+                                <input type="password" id="register-confirm-password" required minlength="6">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create Account</button>
+                        </form>
+                        
+                        <form id="reset-form" class="auth-form">
+                            <div class="form-group">
+                                <label for="reset-email">Email Address</label>
+                                <input type="email" id="reset-email" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Reset Link</button>
+                            <div class="auth-footer">
+                                <p>Remember your password? <a href="#" id="back-to-login-link">Back to Sign In</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PEAK</h3>
+                    <p>Supporting refugees in Kent to access higher education opportunities.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="pathways.html">Education Pathways</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> os146@canterbuy.ac.uk</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pathway to Education Access in Kent. All rights reserved.</p>
+                <p>Developed by Osama Sharkia</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            // Replace with your Firebase config
+            apiKey: "YOUR_API_KEY",
+            authDomain: "your-project-id.firebaseapp.com",
+            projectId: "your-project-id",
+            storageBucket: "your-project-id.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        // Auth references
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM elements
+            const authTabs = document.querySelectorAll('.auth-tab');
+            const authForms = document.querySelectorAll('.auth-form');
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const resetForm = document.getElementById('reset-form');
+            const resetPasswordLink = document.getElementById('reset-password-link');
+            const backToLoginLink = document.getElementById('back-to-login-link');
+            const logoutBtn = document.getElementById('logout-btn');
+            const authMessage = document.getElementById('auth-message');
+            const userProfile = document.getElementById('user-profile');
+            const authForms = document.getElementById('auth-forms');
+            const userName = document.getElementById('user-name');
+            const userEmail = document.getElementById('user-email');
+            
+            // Tab switching
+            authTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    authTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    // Show corresponding form
+                    authForms.forEach(form => {
+                        form.classList.remove('active');
+                        if (form.id === `${tabId}-form`) {
+                            form.classList.add('active');
+                        }
+                    });
+                    
+                    // Clear any messages
+                    authMessage.style.display = 'none';
+                });
+            });
+            
+            // Reset password link
+            resetPasswordLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                authForms.forEach(form => form.classList.remove('active'));
+                resetForm.classList.add('active');
+            });
+            
+            // Back to login link
+            backToLoginLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                authForms.forEach(form => form.classList.remove('active'));
+                loginForm.classList.add('active');
+            });
+            
+            // Login form submission
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                
+                auth.signInWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        // Signed in
+                        showMessage('You have successfully signed in!', 'success');
+                        loginForm.reset();
+                    })
+                    .catch((error) => {
+                        showMessage(`Error: ${error.message}`, 'error');
+                    });
+            });
+            
+            // Register form submission
+            registerForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const name = document.getElementById('register-name').value;
+                const email = document.getElementById('register-email').value;
+                const password = document.getElementById('register-password').value;
+                const confirmPassword = document.getElementById('register-confirm-password').value;
+                
+                if (password !== confirmPassword) {
+                    showMessage('Passwords do not match!', 'error');
+                    return;
+                }
+                
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        // Signed up
+                        const user = userCredential.user;
+                        
+                        // Add user to Firestore
+                        return db.collection('users').doc(user.uid).set({
+                            name: name,
+                            email: email,
+                            createdAt: new Date()
+                        });
+                    })
+                    .then(() => {
+                        showMessage('Your account has been created successfully!', 'success');
+                        registerForm.reset();
+                    })
+                    .catch((error) => {
+                        showMessage(`Error: ${error.message}`, 'error');
+                    });
+            });
+            
+            // Reset password form submission
+            resetForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const email = document.getElementById('reset-email').value;
+                
+                auth.sendPasswordResetEmail(email)
+                    .then(() => {
+                        showMessage('Password reset email sent! Check your inbox.', 'success');
+                        resetForm.reset();
+                    })
+                    .catch((error) => {
+                        showMessage(`Error: ${error.message}`, 'error');
+                    });
+            });
+            
+            // Logout button
+            logoutBtn.addEventListener('click', () => {
+                auth.signOut()
+                    .then(() => {
+                        showMessage('You have been signed out.', 'success');
+                    })
+                    .catch((error) => {
+                        showMessage(`Error: ${error.message}`, 'error');
+                    });
+            });
+            
+            // Auth state change listener
+            auth.onAuthStateChanged((user) => {
+                if (user) {
+                    // User is signed in
+                    db.collection('users').doc(user.uid).get()
+                        .then((doc) => {
+                            if (doc.exists) {
+                                const userData = doc.data();
+                                userName.textContent = userData.name;
+                                userEmail.textContent = userData.email;
+                            }
+                        });
+                    
+                    userProfile.style.display = 'block';
+                    authForms.style.display = 'none';
+                } else {
+                    // User is signed out
+                    userProfile.style.display = 'none';
+                    authForms.style.display = 'block';
+                }
+            });
+            
+            // Helper function to show messages
+            function showMessage(message, type) {
+                authMessage.textContent = message;
+                authMessage.className = 'auth-message';
+                authMessage.classList.add(type);
+                authMessage.style.display = 'block';
+                
+                // Auto hide success messages after 5 seconds
+                if (type === 'success') {
+                    setTimeout(() => {
+                        authMessage.style.display = 'none';
+                    }, 5000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

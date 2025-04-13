@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - PEAK</title>
+    <meta name="description" content="Learn about the mission and vision behind Pathway to Education Access in Kent">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional styles for the about page */
+        .about-hero {
+            background: linear-gradient(135deg, #0066cc, #004080);
+            color: white;
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/placeholder.svg?height=500&width=1000');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .about-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .about-hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: #0066cc;
+            font-size: 2rem;
+        }
+
+        .section-divider {
+            height: 4px;
+            width: 100px;
+            background: linear-gradient(to right, #0066cc, #e67e22);
+            margin: 0 auto 2rem;
+            border-radius: 2px;
+        }
+
+        .section-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .mission-vision-section {
+            padding: 4rem 0;
+            background-color: #f8f9fa;
+            margin-bottom: 3rem;
+        }
+
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .mission-card, .vision-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-card:hover, .vision-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .mission-card::before, .vision-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+
+        .mission-card::before {
+            background-color: #0066cc;
+        }
+
+        .vision-card::before {
+            background-color: #e67e22;
+        }
+
+        .mission-card h3, .vision-card h3 {
+            display: flex;
+            align-items: center;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .mission-card h3 i, .vision-card h3 i {
+            margin-right: 0.75rem;
+            font-size: 1.75rem;
+        }
+
+        .mission-card h3 i {
+            color: #0066cc;
+        }
+
+        .vision-card h3 i {
+            color: #e67e22;
+        }
+
+        .mission-card p, .vision-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .founder-section {
+            padding: 4rem 0;
+            background-color: #f0f7ff;
+            margin-bottom: 3rem;
+        }
+
+        .founder-container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .founder-image {
+            flex: 0 0 300px;
+            position: relative;
+        }
+
+        .founder-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .founder-image::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid #0066cc;
+            border-radius: 8px;
+            z-index: -1;
+        }
+
+        .founder-info {
+            flex: 1;
+        }
+
+        .founder-info h3 {
+            color: #0066cc;
+            margin-top: 0;
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .founder-info h4 {
+            color: #e67e22;
+            margin-top: 0;
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .founder-info p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .founder-contact {
+            display: flex;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+
+        .founder-contact a {
+            display: inline-flex;
+            align-items: center;
+            color: #0066cc;
+            text-decoration: none;
+            margin-right: 1.5rem;
+            font-weight: 500;
+        }
+
+        .founder-contact a i {
+            margin-right: 0.5rem;
+        }
+
+        .founder-contact a:hover {
+            text-decoration: underline;
+        }
+
+        .impact-section {
+            padding: 4rem 0;
+            background-color: #fff8f0;
+            margin-bottom: 3rem;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .impact-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .impact-card i {
+            font-size: 2.5rem;
+            color: #e67e22;
+            margin-bottom: 1.5rem;
+        }
+
+        .impact-card h3 {
+            color: #0066cc;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .impact-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .timeline-section {
+            padding: 4rem 0;
+            background-color: #f8f9fa;
+            margin-bottom: 3rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: linear-gradient(to bottom, #0066cc, #e67e22);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-content {
+            position: relative;
+            width: calc(50% - 30px);
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            transform: rotate(45deg);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            left: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: -10px;
+        }
+
+        .timeline-date {
+            position: absolute;
+            top: 20px;
+            width: 120px;
+            padding: 0.5rem;
+            background-color: #0066cc;
+            color: white;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-date {
+            left: -150px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-date {
+            right: -150px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background-color: #e67e22;
+            border: 4px solid #0066cc;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .timeline-content h3 {
+            margin-top: 0;
+            color: #0066cc;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .cta-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #0066cc, #004080);
+            color: white;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .btn-light {
+            background-color: white;
+            color: #0066cc;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-light:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .mission-vision-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .impact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .founder-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .founder-image {
+                flex: 0 0 auto;
+                max-width: 250px;
+                margin: 0 auto;
+            }
+
+            .founder-contact {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -10px;
+                right: auto;
+            }
+
+            .timeline-date {
+                position: relative;
+                top: auto;
+                left: auto !important;
+                right: auto !important;
+                width: auto;
+                margin-bottom: 1rem;
+            }
+
+            .timeline-dot {
+                left: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>PEAK</h1>
+                <p class="tagline">Pathway to Education Access in Kent</p>
+            </div>
+            <nav id="navbar">
+                <button id="menu-toggle" aria-label="Toggle menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <ul id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="pathways.html">Education Pathways</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="about-hero">
+            <div class="container">
+                <div class="about-hero-content">
+                    <h1>About PEAK</h1>
+                    <p>Empowering refugees in Kent to access higher education and build brighter futures through personalized guidance and support.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mission-vision-section">
+            <div class="container">
+                <h2 class="section-title">Our Mission & Vision</h2>
+                <div class="section-divider"></div>
+                <p class="section-intro">PEAK was founded with a clear purpose: to break down barriers to higher education for refugees in Kent. We believe that education is a powerful tool for integration, empowerment, and rebuilding lives.</p>
+                
+                <div class="mission-vision-grid">
+                    <div class="mission-card">
+                        <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                        <p>To provide personalized guidance, resources, and support to refugees in Kent who aspire to access higher education, helping them navigate the complex educational landscape and overcome barriers to academic success.</p>
+                        <p>We aim to create clear pathways to universities, connect refugees with appropriate resources, and advocate for inclusive educational policies that recognize the unique challenges faced by displaced individuals.</p>
+                    </div>
+                    
+                    <div class="vision-card">
+                        <h3><i class="fas fa-binoculars"></i> Our Vision</h3>
+                        <p>A Kent where every refugee with the desire to pursue higher education has the information, support, and opportunities needed to achieve their academic goals and fulfill their potential.</p>
+                        <p>We envision a future where educational institutions fully embrace the talents, perspectives, and contributions of refugee students, creating diverse and inclusive learning environments that benefit all.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="founder-section">
+            <div class="container">
+                <h2 class="section-title">Meet the Founder</h2>
+                <div class="section-divider"></div>
+                
+                <div class="founder-container">
+                    <div class="founder-image">
+                        <img src="/placeholder.svg?height=400&width=300" alt="Osama Sharkia, Founder of PEAK">
+                    </div>
+                    <div class="founder-info">
+                        <h3>Osama Sharkia</h3>
+                        <h4>Founder & Director</h4>
+                        <p>As the founder of PEAK, I am deeply committed to creating educational opportunities for refugees in Kent. With firsthand understanding of the challenges faced by those seeking to rebuild their lives through education, I established PEAK to provide the guidance I wish had been available to me.</p>
+                        <p>My background in education and personal experience navigating the UK higher education system as a refugee has shaped PEAK's approach to providing practical, empathetic support. I believe that education is not just about academic achievement, but about restoring dignity, purpose, and hope.</p>
+                        <p>Through PEAK, I aim to create a supportive community that empowers refugees to overcome barriers and access the transformative power of higher education.</p>
+                        <div class="founder-contact">
+                            <a href="mailto:os146@canterbuy.ac.uk"><i class="fas fa-envelope"></i> os146@canterbuy.ac.uk</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="impact-section">
+            <div class="container">
+                <h2 class="section-title">Anticipated Impact</h2>
+                <div class="section-divider"></div>
+                <p class="section-intro">As we prepare to launch PEAK, we're excited about the positive change we aim to create in the lives of refugees seeking higher education in Kent. Here's the impact we anticipate making:</p>
+                
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Supporting 100+ Refugees</h3>
+                        <p>We aim to provide personalized guidance to over 100 refugees in our first year, helping them navigate pathways to higher education in Kent.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <i class="fas fa-university"></i>
+                        <h3>University Placements</h3>
+                        <p>We anticipate helping at least 50 refugees secure places at universities in Kent, with appropriate financial support and accommodation.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <i class="fas fa-hands-helping"></i>
+                        <h3>Community Building</h3>
+                        <p>We plan to create a supportive community of current and aspiring refugee students who can share experiences and provide peer support.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <i class="fas fa-book-reader"></i>
+                        <h3>Educational Resources</h3>
+                        <p>We will develop comprehensive, accessible resources tailored to the specific needs of refugees seeking higher education in Kent.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <i class="fas fa-comments"></i>
+                        <h3>Personalized Consultations</h3>
+                        <p>We expect to conduct over 200 one-to-one consultations, providing individualized guidance on education pathways and options.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Institutional Partnerships</h3>
+                        <p>We aim to establish strong partnerships with all universities in Kent to create more inclusive policies and dedicated support for refugee students.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <div class="container">
+                <h2 class="section-title">Our Journey</h2>
+                <div class="section-divider"></div>
+                <p class="section-intro">PEAK is just beginning its journey to transform higher education access for refugees in Kent. Here's our roadmap for the future:</p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2025</div>
+                        <div class="timeline-content">
+                            <h3>PEAK Launch</h3>
+                            <p>Official launch of the PEAK website and services, providing online resources and initial consultations for refugees seeking higher education in Kent.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2025-2026</div>
+                        <div class="timeline-content">
+                            <h3>Building Foundations</h3>
+                            <p>Establishing partnerships with universities, refugee organizations, and community groups. Developing comprehensive resources and support systems.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2026-2027</div>
+                        <div class="timeline-content">
+                            <h3>Expanding Services</h3>
+                            <p>Introducing mentorship programs, regular workshops, and expanding our team to reach more refugees across Kent.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">2027-2028</div>
+                        <div class="timeline-content">
+                            <h3>Creating Community</h3>
+                            <p>Developing a strong network of refugee students and graduates who can provide peer support and inspiration to newcomers.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">Beyond</div>
+                        <div class="timeline-content">
+                            <h3>Systemic Change</h3>
+                            <p>Working with institutions to implement lasting policy changes that make higher education more accessible for all refugees in the UK.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Join Us in Making a Difference</h2>
+                    <p>PEAK is just beginning its journey, and we invite you to be part of our mission to transform higher education access for refugees in Kent. Whether you're a refugee seeking education, a potential partner, or someone who shares our vision, we'd love to connect with you.</p>
+                    <a href="contact.html" class="btn btn-light">Get in Touch</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PEAK</h3>
+                    <p>Supporting refugees in Kent to access higher education opportunities.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="pathways.html">Education Pathways</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> os146@canterbuy.ac.uk</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pathway to Education Access in Kent. All rights reserved.</p>
+                <p>Developed by Osama Sharkia</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="chat-widget" id="chat-widget">
+        <button class="chat-toggle" id="chat-toggle" aria-label="Open chat">
+            <i class="fas fa-comments"></i>
+        </button>
+        <div class="chat-box" id="chat-box">
+            <div class="chat-header">
+                <h3>Need Help?</h3>
+                <button class="close-chat" id="close-chat" aria-label="Close chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message received">
+                    <p>Hello! How can we help you with your education journey today?</p>
+                </div>
+            </div>
+            <form id="chat-form" class="chat-form">
+                <input type="text" id="chat-input" placeholder="Type your message..." aria-label="Type your message">
+                <button type="submit" aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

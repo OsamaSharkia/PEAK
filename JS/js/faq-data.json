@@ -1,0 +1,37 @@
+[
+    {
+      "question": "How do I apply to universities in Kent?",
+      "answer": "Most undergraduate courses in the UK require application through UCAS (Universities and Colleges Admissions Service). The process involves:<ol><li>Creating a UCAS account at <a href='https://www.ucas.com' target='_blank' rel='noreferrer noopener'>ucas.com</a></li><li>Selecting up to 5 courses</li><li>Writing a personal statement</li><li>Getting a reference (usually from a teacher or advisor)</li><li>Paying the application fee (£22.50 for a single choice or £27 for multiple choices)</li></ol><p>For postgraduate courses, you typically apply directly to the university through their website.</p><p>As a refugee, you may be eligible for application fee waivers. Contact the university's admissions office or refugee support team to inquire about this.</p>",
+      "category": "admissions"
+    },
+    {
+      "question": "What are the application deadlines?",
+      "answer": "For undergraduate courses starting in September 2025:<ul><li><strong>15 October 2024:</strong> Applications for medicine, dentistry, veterinary courses, and all courses at Oxford and Cambridge</li><li><strong>31 January 2025:</strong> Applications for most undergraduate courses</li><li><strong>30 June 2025:</strong> Final deadline for late applications</li></ul><p>For postgraduate courses, deadlines vary by university and program. Some popular courses fill up quickly, so it's advisable to apply as early as possible.</p><p>For refugee scholarships, deadlines are often earlier than general admissions deadlines. Check specific scholarship pages for details.</p>",
+      "category": "admissions"
+    },
+    {
+      "question": "What English language qualifications do I need?",
+      "answer": "Most universities require one of the following English language qualifications:<ul><li><strong>IELTS Academic:</strong> Usually 6.0-7.0 overall, with no component below 5.5-6.0</li><li><strong>TOEFL iBT:</strong> Typically 80-100 overall</li><li><strong>Pearson Test of English (PTE) Academic:</strong> Usually 50-65 overall</li><li><strong>Cambridge English: Advanced (CAE):</strong> Grade C or above</li><li><strong>Duolingo English Test:</strong> Some universities now accept this (typically 105-115)</li></ul><p>Requirements vary by university and course, with higher requirements for language-intensive subjects like Law, Medicine, or English Literature.</p><p>Some universities offer pre-sessional English courses if you don't meet the requirements, allowing you to improve your English before starting your degree.</p>",
+      "category": "language"
+    },
+    {
+      "question": "What financial support is available for refugees?",
+      "answer": "Refugees with settled status in the UK have several funding options:<ul><li><strong>Student Finance England:</strong> If you have refugee status or humanitarian protection, you can apply for tuition fee loans and maintenance loans</li><li><strong>University Scholarships:</strong> Many universities offer specific scholarships for refugees</li><li><strong>Charitable Organizations:</strong> Several charities provide grants for refugees in higher education</li><li><strong>Hardship Funds:</strong> Universities have emergency funds for students facing financial difficulties</li></ul><p>For asylum seekers whose claims are still being processed, options are more limited but include specific scholarships and bursaries from universities and charitable organizations.</p><p>Visit our <a href='resources.html#funding'>Funding & Scholarships</a> resource page for more detailed information.</p>",
+      "category": "funding"
+    },
+    {
+      "question": "How are international qualifications recognized in the UK?",
+      "answer": "UK universities assess international qualifications through:<ul><li><strong>UK ENIC (formerly NARIC):</strong> The official agency that compares international qualifications to UK standards</li><li><strong>University Admissions Teams:</strong> Many universities have experience with qualifications from different countries</li><li><strong>Foundation Year Programs:</strong> If your qualifications aren't directly equivalent, you might be offered a foundation year</li></ul><p>Most universities list their international entry requirements on their websites, often organized by country. If your country isn't listed, contact the admissions team directly.</p><p>For a Statement of Comparability from UK ENIC, visit <a href='https://www.enic.org.uk/' target='_blank' rel='noreferrer noopener'>www.enic.org.uk</a>. This service has a fee, but some universities will cover this cost for refugee applicants.</p>",
+      "category": "qualifications"
+    },
+    {
+      "question": "Do I need a student visa if I have refugee status?",
+      "answer": "No, if you have been granted refugee status in the UK, you do not need a student visa to study. Your refugee status gives you the right to study at any level of education.<p>However, you should provide the university with:</p><ul><li>Your Biometric Residence Permit (BRP)</li><li>Home Office documentation confirming your status</li><li>Any other identity documents you have</li></ul><p>If your refugee status is due to expire during your course, you should apply for an extension well in advance. Universities can often provide advice on this process.</p>",
+      "category": "visa"
+    },
+    {
+      "question": "What support services are available at universities?",
+      "answer": "Universities offer a range of support services for all students, including refugees:<ul><li><strong>Wellbeing and Mental Health Support:</strong> Counseling services, mental health advisors, and wellbeing workshops</li><li><strong>Academic Support:</strong> Study skills workshops, writing centers, and personal tutors</li><li><strong>Financial Advice:</strong> Budgeting help, hardship funds, and scholarship information</li><li><strong>Careers Services:</strong> CV help, interview practice, and job search support</li><li><strong>Disability Support:</strong> Accommodations and assistive technology for students with disabilities</li><li><strong>International Student Support:</strong> Visa advice, cultural adjustment, and English language support</li></ul><p>Many universities also have specific refugee support coordinators or teams who understand the unique challenges faced by refugee students.</p>",
+      "category": "support"
+    }
+  ]

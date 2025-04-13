@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - PEAK</title>
+    <meta name="description" content="Get in touch with the Pathway to Education Access in Kent team for personalized guidance">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional styles for the contact page */
+        .contact-section {
+            background-color: #f8f9fa;
+            padding: 3rem 0;
+            border-radius: 8px;
+            margin-bottom: 3rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .contact-info {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-form-container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #f0f7ff;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-method i {
+            font-size: 1.5rem;
+            color: #0066cc;
+            margin-right: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #0066cc;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .btn-primary {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0052a3;
+        }
+
+        .universities-section {
+            padding: 3rem 0;
+            background-color: #f0f7ff;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: #0066cc;
+        }
+
+        .section-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #555;
+        }
+
+        .university-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .university-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .university-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .university-card-header {
+            background-color: #0066cc;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .university-card-header h3 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        .university-card-body {
+            padding: 1.5rem;
+        }
+
+        .university-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .university-links .btn-text {
+            display: inline-flex;
+            align-items: center;
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            background-color: #f0f7ff;
+            transition: background-color 0.3s ease;
+        }
+
+        .university-links .btn-text:hover {
+            background-color: #d8e8ff;
+        }
+
+        .university-links .btn-text i {
+            margin-left: 0.5rem;
+        }
+
+        .appointment-section {
+            padding: 3rem 0;
+            background-color: #fff8f0;
+            margin-bottom: 3rem;
+            border-radius: 8px;
+        }
+
+        .appointment-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .appointment-type {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .appointment-type:hover {
+            transform: translateY(-5px);
+        }
+
+        .appointment-type h3 {
+            color: #e67e22;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .appointment-cta {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .booking-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .booking-form-container h3 {
+            text-align: center;
+            margin-top: 0;
+            color: #e67e22;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .university-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Section dividers */
+        .section-divider {
+            height: 4px;
+            width: 100px;
+            background: linear-gradient(to right, #0066cc, #e67e22);
+            margin: 0 auto 2rem;
+            border-radius: 2px;
+        }
+
+        /* Page header enhancement */
+        .page-header {
+            background-color: #0066cc;
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Animated elements */
+        .animated-icon {
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>PEAK</h1>
+                <p class="tagline">Pathway to Education Access in Kent</p>
+            </div>
+            <nav id="navbar">
+                <button id="menu-toggle" aria-label="Toggle menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <ul id="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="pathways.html">Education Pathways</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1><i class="fas fa-envelope animated-icon"></i> Contact Us</h1>
+                <p>Get in touch with our team for personalized guidance on your education journey</p>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Get in Touch</h2>
+                <div class="section-divider"></div>
+                <p class="section-intro">Our team is here to help you navigate the higher education system in Kent. Whether you have questions about university applications, funding options, or need personalized guidance, we're here to support you.</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h2><i class="fas fa-info-circle" style="color: #0066cc;"></i> Contact Information</h2>
+                        
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h3>Email Us</h3>
+                                <p><a href="mailto:os146@canterbuy.ac.uk">os146@canterbuy.ac.uk</a></p>
+                                <p class="note">We aim to respond to all emails within 2 working days.</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h3>Response Times</h3>
+                                <p>Our team is available Monday to Friday, 9am to 5pm.</p>
+                                <p class="note">For urgent matters, please indicate this in your email subject line.</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <i class="fas fa-language"></i>
+                            <div>
+                                <h3>Language Support</h3>
+                                <p>We can provide support in Arabic, Farsi, Kurdish, and French. Please let us know if you require communication in a specific language.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <h2><i class="fas fa-paper-plane" style="color: #0066cc;"></i> Send Us a Message</h2>
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="preferred-language">Preferred Language (Optional)</label>
+                                <select id="preferred-language" name="preferred-language">
+                                    <option value="English">English</option>
+                                    <option value="Arabic">Arabic</option>
+                                    <option value="Farsi">Farsi</option>
+                                    <option value="Kurdish">Kurdish</option>
+                                    <option value="French">French</option>
+                                    <option value="Other">Other (Please specify in your message)</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="universities-section">
+            <div class="container">
+                <h2 class="section-title">Universities in Kent</h2>
+                <div class="section-divider"></div>
+                <p class="section-intro">Kent is home to several excellent universities. Here are the main institutions where we can help you access higher education:</p>
+
+                <div class="university-cards">
+                    <div class="university-card">
+                        <div class="university-card-header">
+                            <h3><i class="fas fa-university"></i> University of Kent</h3>
+                        </div>
+                        <div class="university-card-body">
+                            <p><strong><i class="fas fa-map-marker-alt" style="color: #e67e22;"></i> Main Campus:</strong> Canterbury, Kent, CT2 7NZ</p>
+                            <p><strong><i class="fas fa-map-marker-alt" style="color: #e67e22;"></i> Additional Campus:</strong> Medway Campus, Chatham Maritime</p>
+                            <p><strong><i class="fas fa-star" style="color: #e67e22;"></i> Known For:</strong> Wide range of academic programs, strong research focus, and dedicated support for refugee students through their Sanctuary Scholarships.</p>
+                            <div class="university-links">
+                                <a href="https://www.kent.ac.uk/" class="btn btn-text" target="_blank" rel="noreferrer noopener">Visit Website <i class="fas fa-external-link-alt"></i></a>
+                                <a href="https://www.google.com/maps/place/University+of+Kent/@51.2967605,1.0629882,15z/data=!4m6!3m5!1s0x47decbb2bf98f8c3:0x9d14d3e6396dab2e!8m2!3d51.2967605!4d1.0629882!16zL20vMDJfOWJo?entry=ttu" class="btn btn-text" target="_blank" rel="noreferrer noopener">Open in Google Maps <i class="fas fa-map-marker-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="university-card">
+                        <div class="university-card-header">
+                            <h3><i class="fas fa-university"></i> Canterbury Christ Church University</h3>
+                        </div>
+                        <div class="university-card-body">
+                            <p><strong><i class="fas fa-map-marker-alt" style="color: #e67e22;"></i> Main Campus:</strong> North Holmes Road, Canterbury, Kent, CT1 1QU</p>
+                            <p><strong><i class="fas fa-map-marker-alt" style="color: #e67e22;"></i> Additional Campuses:</strong> Medway Campus (Chatham Maritime), Tunbridge Wells</p>
+                            <p><strong><i class="fas fa-star" style="color: #e67e22;"></i> Known For:</strong> Strong teaching programs, health and social care courses, and inclusive approach to education with dedicated Sanctuary Awards for refugees.</p>
+                            <div class="university-links">
+                                <a href="https://www.canterbury.ac.uk/" class="btn btn-text" target="_blank" rel="noreferrer noopener">Visit Website <i class="fas fa-external-link-alt"></i></a>
+                                <a href="https://www.google.com/maps/place/Canterbury+Christ+Church+University/@51.2798882,1.0892431,15z/data=!4m6!3m5!1s0x47decbc9b8c93c71:0x7fb0b1b1cb484b27!8m2!3d51.2798882!4d1.0892431!16zL20vMDJfOWJq?entry=ttu" class="btn btn-text" target="_blank" rel="noreferrer noopener">Open in Google Maps <i class="fas fa-map-marker-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="university-card">
+                        <div class="university-card-header">
+                            <h3><i class="fas fa-university"></i> University for the Creative Arts (UCA)</h3>
+                        </div>
+                        <div class="university-card-body">
+                            <p><strong><i class="fas fa-map-marker-alt" style="color: #e67e22;"></i> Kent Campuses:</strong> Canterbury (New Dover Road, CT1 3AN) and Rochester (Fort Pitt, ME1 1DZ)</p>
+                            <p><strong><i class="fas fa-star" style="color: #e67e22;"></i> Known For:</strong> Specialist creative arts education, including art, design, architecture, media, and creative business courses. Offers portfolio-based admissions which can be helpful for those with non-traditional qualifications.</p>
+                            <div class="university-links">
+                                <a href="https://www.uca.ac.uk/" class="btn btn-text" target="_blank" rel="noreferrer noopener">Visit Website <i class="fas fa-external-link-alt"></i></a>
+                                <a href="https://www.google.com/maps/place/UCA+Canterbury/@51.2715144,1.0870499,15z/data=!4m6!3m5!1s0x47decbc7d2d2b1a3:0xf3e4e5557fd1ba73!8m2!3d51.2715144!4d1.0870499!16s%2Fg%2F1tgc_xz9?entry=ttu" class="btn btn-text" target="_blank" rel="noreferrer noopener">Canterbury Campus Map <i class="fas fa-map-marker-alt"></i></a>
+                                <a href="https://www.google.com/maps/place/University+for+the+Creative+Arts+-+Rochester+Campus/@51.3887289,0.5013261,15z/data=!4m6!3m5!1s0x47d8cd0a7a9b2d33:0x8c6f0a2b5c7d8c5a!8m2!3d51.3887289!4d0.5013261!16s%2Fg%2F1tdv_hl4?entry=ttu" class="btn btn-text" target="_blank" rel="noreferrer noopener">Rochester Campus Map <i class="fas fa-map-marker-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="appointment-section">
+            <div class="container">
+                <h2 class="section-title">Book a Consultation</h2>
+                <div class="section-divider"></div>
+                <p class="section-intro">Would you like personalized guidance? Book a one-to-one consultation with our education advisors.</p>
+                
+                <div class="appointment-types">
+                    <div class="appointment-type">
+                        <h3><i class="fas fa-video"></i> Online Consultation</h3>
+                        <p>Meet with an advisor via video call from anywhere.</p>
+                        <p><strong>Duration:</strong> 45 minutes</p>
+                        <p><strong>Available:</strong> Monday to Friday, 10am to 4pm</p>
+                    </div>
+                    
+                    <div class="appointment-type">
+                        <h3><i class="fas fa-user"></i> In-Person Consultation</h3>
+                        <p>Meet face-to-face at our Canterbury location.</p>
+                        <p><strong>Duration:</strong> 1 hour</p>
+                        <p><strong>Available:</strong> Tuesdays and Thursdays, 11am to 3pm</p>
+                    </div>
+                </div>
+                
+                <div class="appointment-cta">
+                    <a href="#" class="btn btn-primary" id="open-booking-form">Book a Consultation</a>
+                </div>
+                
+                <div id="booking-form-container" class="booking-form-container" style="display: none;">
+                    <h3>Book Your Consultation</h3>
+                    <form id="booking-form" class="booking-form">
+                        <div class="form-group">
+                            <label for="booking-name">Your Name</label>
+                            <input type="text" id="booking-name" name="booking-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-email">Email Address</label>
+                            <input type="email" id="booking-email" name="booking-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="consultation-type">Consultation Type</label>
+                            <select id="consultation-type" name="consultation-type" required>
+                                <option value="">Select an option</option>
+                                <option value="online">Online Consultation</option>
+                                <option value="in-person">In-Person Consultation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="preferred-date">Preferred Date</label>
+                            <input type="date" id="preferred-date" name="preferred-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="preferred-time">Preferred Time</label>
+                            <select id="preferred-time" name="preferred-time" required>
+                                <option value="">Select a time</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:00">1:00 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="consultation-topic">What would you like to discuss?</label>
+                            <textarea id="consultation-topic" name="consultation-topic" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Request Appointment</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PEAK</h3>
+                    <p>Supporting refugees in Kent to access higher education opportunities.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="pathways.html">Education Pathways</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> os146@canterbuy.ac.uk</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pathway to Education Access in Kent. All rights reserved.</p>
+                <p>Developed by Osama Sharkia</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="chat-widget" id="chat-widget">
+        <button class="chat-toggle" id="chat-toggle" aria-label="Open chat">
+            <i class="fas fa-comments"></i>
+        </button>
+        <div class="chat-box" id="chat-box">
+            <div class="chat-header">
+                <h3>Need Help?</h3>
+                <button class="close-chat" id="close-chat" aria-label="Close chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="message received">
+                    <p>Hello! How can we help you with your education journey today?</p>
+                </div>
+            </div>
+            <form id="chat-form" class="chat-form">
+                <input type="text" id="chat-input" placeholder="Type your message..." aria-label="Type your message">
+                <button type="submit" aria-label="Send message"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Additional JavaScript for the booking form toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const openBookingFormBtn = document.getElementById('open-booking-form');
+            const bookingFormContainer = document.getElementById('booking-form-container');
+            
+            if (openBookingFormBtn && bookingFormContainer) {
+                openBookingFormBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    bookingFormContainer.style.display = bookingFormContainer.style.display === 'none' ? 'block' : 'none';
+                    
+                    if (bookingFormContainer.style.display === 'block') {
+                        bookingFormContainer.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+            
+            const bookingForm = document.getElementById('booking-form');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for requesting an appointment. We will confirm your consultation time shortly!');
+                    bookingForm.reset();
+                    bookingFormContainer.style.display = 'none';
+                });
+            }
+            
+            // Dynamically update available times based on consultation type
+            const consultationType = document.getElementById('consultation-type');
+            const preferredTime = document.getElementById('preferred-time');
+            const preferredDate = document.getElementById('preferred-date');
+            
+            if (consultationType && preferredTime && preferredDate) {
+                consultationType.addEventListener('change', updateAvailableTimes);
+                preferredDate.addEventListener('change', function() {
+                    const selectedDate = new Date(this.value);
+                    const dayOfWeek = selectedDate.getDay(); // 0 = Sunday, 1 = Monday, etc.
+                    
+                    if (consultationType.value === 'in-person' && dayOfWeek !== 2 && dayOfWeek !== 4) {
+                        // If in-person is selected but the day is not Tuesday (2) or Thursday (4)
+                        alert('In-person consultations are only available on Tuesdays and Thursdays. Please select a different date or consultation type.');
+                        this.value = '';
+                    }
+                    
+                    updateAvailableTimes();
+                });
+                
+                function updateAvailableTimes() {
+                    // Clear existing options except the first one
+                    while (preferredTime.options.length > 1) {
+                        preferredTime.remove(1);
+                    }
+                    
+                    if (consultationType.value === 'online') {
+                        // Online consultations: 10am to 4pm
+                        addTimeOption('10:00', '10:00 AM');
+                        addTimeOption('11:00', '11:00 AM');
+                        addTimeOption('12:00', '12:00 PM');
+                        addTimeOption('13:00', '1:00 PM');
+                        addTimeOption('14:00', '2:00 PM');
+                        addTimeOption('15:00', '3:00 PM');
+                        addTimeOption('16:00', '4:00 PM');
+                    } else if (consultationType.value === 'in-person') {
+                        // In-person consultations: 11am to 3pm
+                        addTimeOption('11:00', '11:00 AM');
+                        addTimeOption('12:00', '12:00 PM');
+                        addTimeOption('13:00', '1:00 PM');
+                        addTimeOption('14:00', '2:00 PM');
+                        addTimeOption('15:00', '3:00 PM');
+                    }
+                }
+                
+                function addTimeOption(value, text) {
+                    const option = document.createElement('option');
+                    option.value = value;
+                    option.text = text;
+                    preferredTime.add(option);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

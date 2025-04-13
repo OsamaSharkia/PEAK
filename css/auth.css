@@ -1,0 +1,92 @@
+/* Authentication Styles */
+.auth-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+  }
+  
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .auth-form .form-group {
+    margin-bottom: 0;
+  }
+  
+  .auth-form small {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--text-light);
+    font-size: 0.8rem;
+  }
+  
+  .form-error {
+    color: var(--error-color);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+  
+  .form-success {
+    color: var(--success-color);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(39, 174, 96, 0.1);
+    border-radius: var(--border-radius-sm);
+  }
+  
+  .auth-links {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .login-section,
+  .signup-section {
+    padding: 4rem 0;
+    background-color: var(--bg-light);
+  }
+  
+  /* User profile display */
+  #user-profile {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: var(--primary-light);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-right: 1rem;
+  }
+  
+  /* Loading spinner */
+  .loading-spinner {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-light);
+  }
+  
+  /* FAQ Meta information */
+  .faq-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--text-lighter);
+    border-top: 1px solid var(--border-color);
+    padding-top: 0.5rem;
+  }
+  
+  .faq-category {
+    background-color: var(--primary-light);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+  }
+  
